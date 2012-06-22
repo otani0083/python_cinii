@@ -1,6 +1,7 @@
 #coding: UTF-8
 import urllib
 import urllib2
+from xml.etree.ElementTree import *
 from BeautifulSoup import BeautifulSoup
 
 def cinii_search(query):
@@ -20,7 +21,12 @@ def cinii_search(query):
         print e.reason
     return search_result_list
         
-cinii_result=u"http://ci.nii.ac.jp/ncid/BB02642167.rdf"
-rdf=urllib.urlopen(cinii_result)
-soup_r=BeautifulSoup(rdf)
+cinii_result=cinii_search("高麗")
+soup_r=[]
+for i in cinii_result:
+    rdf=urllib.urlopen(i)
+    soup_r.append(BeautifulSoup(rdf))
+    
 print soup_r
+
+
